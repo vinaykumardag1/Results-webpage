@@ -1,0 +1,15 @@
+h1{
+    color: red;
+    
+
+}
+body{
+    margin: 100px;
+    border-radius: darkgray;
+    border-color: rgba(2, 35, 32, 0.185);
+    border-width: 10px;
+    border-style: solid;
+}
+input.submit{
+    background-color: darkgray;
+}
