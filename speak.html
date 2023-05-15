@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Voice Search Example</title>
+	<style>
+		#search{
+			margin: 200px;
+			border: 10px inset red;
+			padding: 10px;
+			background-color: beige;
+			font: 100;
+			font-size: xx-large;
+			font-style: italic;
+		}
+		#btn{
+			width:5cm;
+			background-color: aqua;
+			margin: 10px;
+			font-style: initial;
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" id="search" placeholder="search..."><br>
+	<button id="btn">Search</button>
+	
+	<script>
+		// check if the browser supports Web Speech API
+		
+		if ('webkitSpeechRecognition' in window) {
+			// create a new SpeechRecognition object
+			var recognition = new webkitSpeechRecognition();
+			// set the language to recognize
+			recognition.lang = 'en-US';
+
+			// handle the results of speech recognition
+			recognition.onresult = function(event) {
+				var result = event.results[0][0].transcript;
+				document.getElementById('search').value = result;
+			};
+
+			// start speech recognition when the button is clicked
+			document.getElementById('btn').onclick = function() {
+				recognition.start();
+			};
+		} else {
+			alert('Your browser does not support Web Speech API');
+		}
+        
+
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://api.example.com/data", true);
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    var response = JSON.parse(xhr.responseText);
+    console.log(response);
+  }
+};
+xhr.send();
+
+	</script>
+</body>
+</html>
