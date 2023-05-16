@@ -1,65 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Voice Search Example</title>
-	<style>
-		#search{
-			margin: 200px;
-			border: 10px inset red;
-			padding: 10px;
-			background-color: beige;
-			font: 100;
-			font-size: xx-large;
-			font-style: italic;
-		}
-		#btn{
-			width:5cm;
-			background-color: aqua;
-			margin: 10px;
-			font-style: initial;
-			color: blue;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            border: 10px solid blueviolet;
+            margin: 5px;
+            background-color: aqua;
+            width: 30cm;
+            height: 40cm;
+
+        }
+        #intro{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-style: oblique;
+            font-stretch: condensed;
+            font-weight: 500;
+            color: brown;
+
+        }
+        #intro2{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: larger;
+            font-style: italic;
+            color: fuchsia;
+
+        }
+        #intro1{
+            font: 600;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-style: inherit;
+            color: floralwhite;
+        }
+        textarea{
+            font-size: xx-large;
+            font-weight: 400;
+            font-style: italic;
+            color: red;
+            background-color: ghostwhite;
+        }
+        button{
+            width: 2cm;
+            height: 1cm;
+            background: local;
+            background-color: coral;
+            border-radius: 100%;
+            margin: 10px;
+            cursor:pointer;
+        }
+        button:hover{
+            width: 2cm;
+            height: 1cm;
+            background-color: chartreuse;
+            text-decoration: double;
+            border-radius: 100%;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-	<input type="text" id="search" placeholder="search..."><br>
-	<button id="btn">Search</button>
-	
-	<script>
-		// check if the browser supports Web Speech API
-		
-		if ('webkitSpeechRecognition' in window) {
-			// create a new SpeechRecognition object
-			var recognition = new webkitSpeechRecognition();
-			// set the language to recognize
-			recognition.lang = 'en-US';
+    <div class="box">
+        <h1 id="intro">Hi Welcome Our Webpage</h1>
+        <h1 id="intro1">Here Some times we Feel shy to talk with another person<br>
+        This website will Help you to speak </h1>
+        <h1 id="intro2">If Introvert Like me This page is Definitly usefull for You</h1><br><br>
+<center> <textarea></textarea><br>
+    <button>Speak</button>
+</center>
+    </div>
+    <script>
+     button=document.querySelector('button');
+     text=document.querySelector('textarea');
+     button.addEventListener("click",() =>{
+        let utterance=new SpeechSynthesisUtterance(text.value);
+        speechSynthesis.speak(utterance);
 
-			// handle the results of speech recognition
-			recognition.onresult = function(event) {
-				var result = event.results[0][0].transcript;
-				document.getElementById('search').value = result;
-			};
-
-			// start speech recognition when the button is clicked
-			document.getElementById('btn').onclick = function() {
-				recognition.start();
-			};
-		} else {
-			alert('Your browser does not support Web Speech API');
-		}
-        
-
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "https://api.example.com/data", true);
-xhr.onreadystatechange = function () {
-  if (xhr.readyState === 4 && xhr.status === 200) {
-    var response = JSON.parse(xhr.responseText);
-    console.log(response);
-  }
-};
-xhr.send();
-
-	</script>
+     });
+    </script>
 </body>
 </html>
